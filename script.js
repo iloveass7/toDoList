@@ -3,6 +3,7 @@ const newTaskInput = document.querySelector("#wrapper input");
 const tasksContainer = document.querySelector("#tasks");
 const countValue = document.querySelector(".count-value");
 const error = document.getElementById("error");
+const deleteAllBtn = document.getElementById("delete-all-btn");
 let taskCount = 0;
 let editMode = false;
 let currentTask = null;
@@ -71,8 +72,8 @@ const addTaskToDOM = (taskName, completed = false) => {
     const taskCheck = task.querySelector('.task-check');
     taskCheck.addEventListener('change', () => {
         task.querySelector('.taskName').classList.toggle('completed', taskCheck.checked);
-        saveTasks();
         updateCompletedCount();
+        saveTasks();
     });
 
     tasksContainer.appendChild(task);
@@ -87,10 +88,8 @@ const addTask = () => {
         }, 200);
         return;
     }
-
-    if (editMode && currentTask) {
-        const taskNameSpan = currentTask.querySelector('.taskName');
-        taskNameSpan.innerText = taskName;
+    if (editMode) {
+        currentTask.querySelector('.taskName').innerText = taskName;
         editMode = false;
         currentTask = null;
     } else {
@@ -98,12 +97,18 @@ const addTask = () => {
         taskCount++;
         displayCount(taskCount);
     }
-
+    newTaskInput.value = "";
     saveTasks();
-    newTaskInput.value = ""; 
+    updateCompletedCount();
+}
+
+const deleteAllTasks = () => {
+    tasksContainer.innerHTML = '<p id="pending-tasks">You have <span class="count-value">0</span> task(s) to complete.</p>';
+    taskCount = 0;
+    displayCount(taskCount);
+    localStorage.removeItem('tasks');
 }
 
 addBtn.addEventListener("click", addTask);
-
-// Load tasks from local storage when the page loads
-window.addEventListener('load', loadTasks);
+deleteAllBtn.addEventListener("click", deleteAllTasks);
+document.addEventListener("DOMContentLoaded", loadTasks);

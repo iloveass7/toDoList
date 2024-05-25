@@ -24,6 +24,18 @@ body {
     background-color: cornsilk;
     box-shadow: 0 1em 1em rgba(0, 0, 0, 0.2);
     border-radius: 0.7em;
+    text-align: center; 
+}
+
+h1 {
+    margin-bottom: 1em;
+    color: #735DA5;
+    font-size: 2em;
+}
+
+#add-btn i {
+    color: cornsilk;
+    font-size: 5em; 
 }
 
 #wrapper {
@@ -56,6 +68,13 @@ body {
     outline: none;
     border: none;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#wrapper button i {
+    font-size: 1.2em;
 }
 
 #tasks {
@@ -130,11 +149,12 @@ body {
 
 .edit {
     background-color: #D3C5E5;
-    margin-right: 1em; /* Increase space between edit and delete buttons */
+    margin-right: 0.5em; 
 }
 
 .delete {
     background-color: red;
+    margin-right: 0.5;
 }
 
 #pending-tasks span {
@@ -143,7 +163,7 @@ body {
 
 .completed {
     text-decoration: line-through;
-    color: silver;
+    color: #D3C5E5;
 }
 
 #error {
@@ -154,4 +174,18 @@ body {
     padding: 1em;
     border-radius: 0.7em;
     display: none;
+}
+
+#delete-all-btn {
+    margin-top: 1em;
+    border-radius: .5em;
+    font-weight: 500;
+    font-size: 1em;
+    background-color: red;
+    color: cornsilk;
+    padding: 1em;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    outline: none;
 }
